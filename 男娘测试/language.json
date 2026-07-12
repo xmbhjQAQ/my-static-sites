@@ -12,6 +12,12 @@
       "questions": "questions/questions_en_us.js",
       "label": "English",
       "enabled": true
+    },
+    "ja": {
+      "dict": "locales/ja.json",
+      "questions": "questions/questions_ja.js",
+      "label": "日本語",
+      "enabled": true
     }
   }
 }

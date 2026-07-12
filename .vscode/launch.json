@@ -1,0 +1,14 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "editor-browser",
+            "request": "launch",
+            "name": "Open index.html",
+            "url": "file:///c%3A/Users/38759/Documents/my-static-sites/%E7%94%B7%E5%A8%98%E6%B5%8B%E8%AF%95/index.html"
+        }
+    ]
+}
