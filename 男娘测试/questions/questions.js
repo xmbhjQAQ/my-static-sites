@@ -1,3 +1,4 @@
+(function() {
 // questions.js
     // =====================================================================
     // 动态智能题库 (容量: 130题，完美甜点区)
@@ -463,3 +464,6 @@
         if (!rewrite) return;
         Object.assign(q, rewrite);
     });
+
+    window.rawQuestionBank = rawQuestionBank;
+})();

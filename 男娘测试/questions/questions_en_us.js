@@ -1,3 +1,4 @@
+(function() {
 // questions.js
     // =====================================================================
     // Dynamic intelligent question bank (capacity: 130 questions, ideal sweet spot)
@@ -465,3 +466,4 @@
     });
 
     window.rawQuestionBank = rawQuestionBank;
+})();
