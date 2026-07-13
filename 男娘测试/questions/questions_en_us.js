@@ -318,11 +318,12 @@
         'animal', 'healer', 'coquettish', 'spoiled', 'disguise', 'Cosplay', 'VTuber'
     ];
 
+    const dimCounters = {};
     rawQuestionBank.forEach((q, idx) => {
         const dim = q.d || 'F';
-        const dimCountBefore = rawQuestionBank.slice(0, idx).filter(item => (item.d || 'F') === dim).length + 1;
-        q.id = q.id || `${dim}-${q.type === 'choice' ? 'C' : 'L'}${String(dimCountBefore).padStart(2, '0')}`;
-        q.facet = q.facet || facetByDim[dim]?.[(dimCountBefore - 1) % facetByDim[dim].length] || 'general';
+        dimCounters[dim] = (dimCounters[dim] || 0) + 1;
+        q.id = q.id || `${dim}-${q.type === 'choice' ? 'C' : 'L'}${String(dimCounters[dim]).padStart(2, '0')}`;
+        q.facet = q.facet || facetByDim[dim]?.[(dimCounters[dim] - 1) % facetByDim[dim].length] || 'general';
         q.scored = q.scored !== false && dim !== 'F' && dim !== 'K';
         q.r = q.r === true;
         q.options = q.type === 'choice' ? q.options : null;
