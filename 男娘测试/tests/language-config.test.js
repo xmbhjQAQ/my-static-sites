@@ -9,8 +9,17 @@ function readJson(file) {
   return JSON.parse(read(file));
 }
 
-const manifest = readJson('language.json');
 const html = read('index.html');
+
+// Extract FALLBACK_LANGUAGE_CONFIG from index.html
+function extractFallbackConfig(html) {
+  const match = html.match(/FALLBACK_LANGUAGE_CONFIG\s*=\s*(\{[^;]+\});/);
+  if (!match) throw new Error('Could not find FALLBACK_LANGUAGE_CONFIG in index.html');
+  // Use Function constructor to safely evaluate the JS object literal
+  return new Function('return ' + match[1])();
+}
+
+const manifest = extractFallbackConfig(html);
 
 function canonicalizeLocale(locale) {
   const parts = String(locale || '').trim().replace(/_/g, '-').split('-').filter(Boolean);
@@ -76,8 +85,13 @@ assert.strictEqual(
 );
 assert.strictEqual(
   resolveLocale({ urlLang: null, savedLang: null, deviceLanguages: ['ja-JP', 'ko-KR'], navigatorLanguage: 'ja-JP' }, manifest.locales),
+  'ja',
+  'ja-JP device language should match the registered ja locale'
+);
+assert.strictEqual(
+  resolveLocale({ urlLang: null, savedLang: null, deviceLanguages: ['ko-KR'], navigatorLanguage: 'ko-KR' }, manifest.locales),
   'zh-CN',
-  'unknown device languages should fall back to Chinese'
+  'unknown device languages such as ko-KR should fall back to Chinese'
 );
 assert.strictEqual(
   resolveLocale({ urlLang: 'en-US', savedLang: 'zh-CN', deviceLanguages: ['zh-CN'], navigatorLanguage: 'zh-CN' }, manifest.locales),
@@ -91,8 +105,12 @@ assert.strictEqual(
 );
 
 assert.ok(
-  html.includes("LANGUAGE_CONFIG_PATH = 'language.json'"),
-  'index.html should load language settings from language.json'
+  html.includes('FALLBACK_LANGUAGE_CONFIG'),
+  'index.html should define inline language config via FALLBACK_LANGUAGE_CONFIG'
+);
+assert.ok(
+  !html.includes("LANGUAGE_CONFIG_PATH = 'language.json'"),
+  'index.html should not reference a separate language.json file'
 );
 assert.ok(
   html.includes('loadLanguageConfig'),
@@ -132,7 +150,7 @@ assert.ok(
 );
 assert.ok(
   !html.includes('const SUPPORTED_LOCALES = {'),
-  'supported locales should not be hard-coded as an object literal in index.html'
+  'supported locales should not be hard-coded as a second object literal in index.html'
 );
 assert.ok(
   html.includes('source[key]'),
@@ -140,7 +158,7 @@ assert.ok(
 );
 assert.ok(
   html.includes('option.textContent = config.label'),
-  'language selector option labels should come directly from language.json'
+  'language selector option labels should come directly from the locale config'
 );
 assert.ok(
   !html.includes('option.textContent = t(`language.options.${locale}`'),
