@@ -13,7 +13,7 @@ const html = read('index.html');
 
 // Extract FALLBACK_LANGUAGE_CONFIG from index.html
 function extractFallbackConfig(html) {
-  const match = html.match(/FALLBACK_LANGUAGE_CONFIG\s*=\s*(\{[^;]+\});/);
+  const match = html.match(/FALLBACK_LANGUAGE_CONFIG\s*=\s*(\{[\s\S]*?\n\s*\};)/);
   if (!match) throw new Error('Could not find FALLBACK_LANGUAGE_CONFIG in index.html');
   // Use Function constructor to safely evaluate the JS object literal
   return new Function('return ' + match[1])();

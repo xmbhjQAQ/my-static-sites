@@ -210,7 +210,7 @@
         { id: 'A-L23', type: 'likert', d: 'A', facet: 'texture_comfort', scored: true, r: false, face: 1, t: "服や寝具の肌触りが硬かったり、チクチクしたり、摩擦が強いと、気分に直結する。" },
         { id: 'A-L24', type: 'likert', d: 'A', facet: 'scent_cleanliness', scored: true, r: false, face: 1, t: "洗剤や柔軟剤、ルームフレグランスは、機能だけでなく香りが清潔で心地よいものを選びがち。" },
         { id: 'A-L25', type: 'likert', d: 'A', facet: 'detail_sensitivity', scored: true, r: false, face: 1, t: "レイアウトや色、配置が少し不調和だと、使うのに支障がなくてもつい調整したくなる。" },
-        { id: 'A-L26', type: 'likert', d: 'A', facet: 'visual_harmony', scored: true, r: true, face: 1, t: "【逆転】物が一緒に並べて美しいかどうかはほぼ気にしない。使えればそれで十分だ。" },
+        { id: 'A-L26', type: 'likert', d: 'A', facet: 'visual_harmony', scored: true, r: true, face: 1, t: "【逆転】物を並べたときに美しいかどうかはほぼ気にしない。使えればそれで十分だ。" },
         { id: 'A-C09', type: 'choice', d: 'A', facet: 'detail_sensitivity', scored: true, r: false, face: 1, t: "毎日使う小さな物を買う時、いくつか価格が似ていて、どれを選びますか？", options: [
             { v: 2, l: "レビューで丈夫で長持ちすると評判" }, { v: 4, l: "サイズがちょうどよく、机の上で浮かない" },
             { v: 1, l: "一番安い。壊れたら買い替えればいい" }, { v: 5, l: "細部の仕上げが良く、手に取ると嬉しくなる" } ]},
@@ -297,9 +297,9 @@
         { id: 'K-L01', type: 'likert', d: 'K', facet: 'space_usage', scored: false, r: false, face: 1, consistencyKey: 'space', consistencyPolarity: 1, t: "人が多い場所では、自然と動作や持ち物をよりコンパクトにまとめる。" },
         { id: 'K-L02', type: 'likert', d: 'K', facet: 'space_usage', scored: false, r: false, face: 1, consistencyKey: 'space', consistencyPolarity: -1, t: "故意に他人を妨害していなければ、公共スペースでどれだけ場所を取っているかはあまり気にしない。" },
         { id: 'K-L03', type: 'likert', d: 'K', facet: 'boundary_flex', scored: false, r: false, face: 1, consistencyKey: 'boundary', consistencyPolarity: 1, t: "知り合いに自分のイメージを軽く誤解されても、すぐに反論せず、まず状況を見る。" },
-        { id: 'K-L04', type: 'likert', d: 'K', facet: 'boundary_flex', scored: false, r: false, face: 1, consistencyKey: 'boundary', consistencyPolarity: -1, t: "他人が自分のイメージを少し冗談にすると、すぐに警戒して拒絶したくなる。" },
+        { id: 'K-L04', type: 'likert', d: 'K', facet: 'boundary_flex', scored: false, r: false, face: 1, consistencyKey: 'boundary', consistencyPolarity: -1, t: "他人に自分のイメージをからかわれたり、冗談のネタにされたりすると、すぐに警戒して拒絶したくなる。" },
         { id: 'K-L05', type: 'likert', d: 'K', facet: 'support_need', scored: false, r: false, face: 1, consistencyKey: 'support', consistencyPolarity: 1, t: "気分が落ち込んだ時、直接理屈を言われるより、優しく寄り添ってもらう方が回復できる。" },
-        { id: 'K-L06', type: 'likert', d: 'K', facet: 'support_need', scored: false, r: false, face: 1, consistencyKey: 'support', consistencyPolarity: -1, t: "気分が悪い時は慰めが一番不要だ。どう解決するか直接教えてくれればいい。" },
+        { id: 'K-L06', type: 'likert', d: 'K', facet: 'support_need', scored: false, r: false, face: 1, consistencyKey: 'support', consistencyPolarity: -1, t: "落ち込んでいる時は慰めが一番不要だ。どう解決するか直接教えてくれればいい。" },
         { id: 'K-L07', type: 'likert', d: 'K', facet: 'detail_sensitivity', scored: false, r: false, face: 1, consistencyKey: 'detail', consistencyPolarity: 1, t: "細部の不調和は、自分が思っている以上に注意を引きつける。" },
         { id: 'K-L08', type: 'likert', d: 'K', facet: 'detail_sensitivity', scored: false, r: false, face: 1, consistencyKey: 'detail', consistencyPolarity: -1, t: "機能に問題がなければ、細部が調和しているかは全く気にしない。" }
     ];
