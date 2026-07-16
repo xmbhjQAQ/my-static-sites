@@ -14,7 +14,8 @@
     "unavailable": "该语言资源还没补全，暂时不可切换。",
     "options": {
       "zh-CN": "简体中文",
-      "en-US": "English（待补全）"
+      "en-US": "English",
+      "ja": "日本語"
     }
   },
   "home": {

@@ -1,3 +1,4 @@
+(function() {
 // questions.js
     // =====================================================================
     // 动态智能题库 (容量: 130题，完美甜点区)
@@ -318,11 +319,12 @@
         '小动物', '奶妈', '撒娇', '娇', '宠', '伪装', 'Cosplay', 'VTuber'
     ];
 
+    const dimCounters = {};
     rawQuestionBank.forEach((q, idx) => {
         const dim = q.d || 'F';
-        const dimCountBefore = rawQuestionBank.slice(0, idx).filter(item => (item.d || 'F') === dim).length + 1;
-        q.id = q.id || `${dim}-${q.type === 'choice' ? 'C' : 'L'}${String(dimCountBefore).padStart(2, '0')}`;
-        q.facet = q.facet || facetByDim[dim]?.[(dimCountBefore - 1) % facetByDim[dim].length] || 'general';
+        dimCounters[dim] = (dimCounters[dim] || 0) + 1;
+        q.id = q.id || `${dim}-${q.type === 'choice' ? 'C' : 'L'}${String(dimCounters[dim]).padStart(2, '0')}`;
+        q.facet = q.facet || (facetByDim[dim] ? facetByDim[dim][(dimCounters[dim] - 1) % facetByDim[dim].length] : undefined) || 'general';
         q.scored = q.scored !== false && dim !== 'F' && dim !== 'K';
         q.r = q.r === true;
         q.options = q.type === 'choice' ? q.options : null;
@@ -464,3 +466,4 @@
     });
 
     window.rawQuestionBank = rawQuestionBank;
+})();

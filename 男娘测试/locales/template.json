@@ -1,7 +1,7 @@
 {
   "__translatorNotes": {
     "purpose": "Copy this file when creating a new language pack. Translate all user-facing strings, keep every key name unchanged, and keep placeholders such as {score}, {tier}, {seconds}, {value}, {percent}, {count}, {delta}, {title}, {dominantName}, and {rankText}.",
-    "languageJson": "After creating a translated dictionary and question bank, add the language to ../language.json. The language selector label is read from language.json, not from this dictionary.",
+    "languageConfig": "After creating a translated dictionary and question bank, add the language entry to FALLBACK_LANGUAGE_CONFIG in index.html. The language selector label is read from that config, not from this dictionary.",
     "html": "Keys ending in Html may contain simple inline HTML already shown in the value. Keep tags balanced.",
     "arrays": "question.standardOptions must stay in score order 5 to 1. tiers must stay sorted by max."
   },
