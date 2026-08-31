@@ -28,31 +28,36 @@ function safeSubmissionId(value) {
 }
 
 async function getScoreStats(db, includeRecent = false) {
-  const stats = await db.prepare(`
+  const summary = await db.prepare(`
     SELECT
-      COUNT(*) AS count,
-      ROUND(AVG(score), 2) AS averageScore,
-      MIN(score) AS minScore,
-      MAX(score) AS maxScore,
-      MAX(created_at) AS lastSubmittedAt
-    FROM score_submissions
-    WHERE is_spam = 0
+      total_count AS totalCount,
+      valid_count AS validCount,
+      spam_count AS spamCount,
+      valid_score_sum AS validScoreSum,
+      valid_score_min AS minScore,
+      valid_score_max AS maxScore,
+      last_valid_submitted_at AS lastSubmittedAt
+    FROM score_stats
+    WHERE id = 1
   `).first();
 
-  const totals = await db.prepare(`
-    SELECT
-      COUNT(*) AS totalCount,
-      SUM(CASE WHEN is_spam = 0 THEN 1 ELSE 0 END) AS validCount,
-      SUM(CASE WHEN is_spam = 1 THEN 1 ELSE 0 END) AS spamCount
-    FROM score_submissions
-  `).first();
+  const validCount = Number(summary?.validCount ?? 0);
+  const stats = {
+    count: validCount,
+    averageScore: validCount
+      ? Number((Number(summary?.validScoreSum ?? 0) / validCount).toFixed(2))
+      : null,
+    minScore: summary?.minScore ?? null,
+    maxScore: summary?.maxScore ?? null,
+    lastSubmittedAt: summary?.lastSubmittedAt ?? null
+  };
 
   const result = {
     stats,
     totals: {
-      totalCount: totals?.totalCount ?? 0,
-      validCount: totals?.validCount ?? 0,
-      spamCount: totals?.spamCount ?? 0
+      totalCount: Number(summary?.totalCount ?? 0),
+      validCount: Number(summary?.validCount ?? 0),
+      spamCount: Number(summary?.spamCount ?? 0)
     }
   };
 
