@@ -30,14 +30,15 @@ function safeSubmissionId(value) {
 async function getScoreStats(db, includeRecent = false) {
   const summary = await db.prepare(`
     SELECT
-      COUNT(*) AS totalCount,
-      SUM(CASE WHEN is_spam = 0 THEN 1 ELSE 0 END) AS validCount,
-      SUM(CASE WHEN is_spam = 1 THEN 1 ELSE 0 END) AS spamCount,
-      COALESCE(SUM(CASE WHEN is_spam = 0 THEN score ELSE 0 END), 0) AS validScoreSum,
-      MIN(CASE WHEN is_spam = 0 THEN score END) AS minScore,
-      MAX(CASE WHEN is_spam = 0 THEN score END) AS maxScore,
-      MAX(CASE WHEN is_spam = 0 THEN created_at END) AS lastSubmittedAt
-    FROM score_submissions
+      total_count AS totalCount,
+      valid_count AS validCount,
+      spam_count AS spamCount,
+      valid_score_sum AS validScoreSum,
+      valid_score_min AS minScore,
+      valid_score_max AS maxScore,
+      last_valid_submitted_at AS lastSubmittedAt
+    FROM score_stats
+    WHERE id = 1
   `).first();
 
   const validCount = Number(summary?.validCount ?? 0);
@@ -54,9 +55,9 @@ async function getScoreStats(db, includeRecent = false) {
   const result = {
     stats,
     totals: {
-      totalCount: summary?.totalCount ?? 0,
-      validCount: summary?.validCount ?? 0,
-      spamCount: summary?.spamCount ?? 0
+      totalCount: Number(summary?.totalCount ?? 0),
+      validCount: Number(summary?.validCount ?? 0),
+      spamCount: Number(summary?.spamCount ?? 0)
     }
   };
 
