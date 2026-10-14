@@ -6,7 +6,6 @@ const root = path.resolve(__dirname, '..');
 const en = JSON.parse(fs.readFileSync(path.join(root, 'locales/en_us.json'), 'utf8'));
 
 function getMessage(key) {
-  if (Object.prototype.hasOwnProperty.call(en, key) && en[key] !== '') return en[key];
   let cursor = en;
   for (const part of key.split('.')) {
     if (cursor == null || cursor[part] == null || cursor[part] === '') return undefined;

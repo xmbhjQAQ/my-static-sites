@@ -155,8 +155,8 @@ assert.ok(
   'supported locales should not be hard-coded as a second object literal in index.html'
 );
 assert.ok(
-  html.includes('source[key]'),
-  'translation lookup should support flat dictionary keys such as meta.title'
+  !html.includes('source[key]'),
+  'translation lookup should only traverse the canonical nested dictionary'
 );
 assert.ok(
   html.includes('option.textContent = config.label'),
