@@ -42,9 +42,9 @@ async function main() {
             name: 'quiz-pages-local-test', compatibility_date: '2026-10-01',
             d1_databases: [{ binding: 'DB', database_name: 'quiz-pages-local-test', database_id: databaseId }]
         }));
-        for (const migration of fs.readdirSync(path.join(root, '男娘测试/migrations')).filter(name => name.endsWith('.sql')).sort()) {
+        for (const migration of fs.readdirSync(path.join(root, 'migrations')).filter(name => name.endsWith('.sql')).sort()) {
             execFileSync(process.execPath, [cli, 'd1', 'execute', 'DB', '--config', configFile,
-                '--local', '--persist-to', stateDirectory, '--file', path.join(root, '男娘测试/migrations', migration)],
+                '--local', '--persist-to', stateDirectory, '--file', path.join(root, 'migrations', migration)],
                 { cwd: root, env: environment, stdio: 'pipe', timeout: 45000 });
         }
         runtime = spawn(process.execPath, [cli, ...runtimeArgs], { cwd: root, env: environment, stdio: 'pipe' });
@@ -88,7 +88,7 @@ async function main() {
         const debugAsset = await fetch(`${url}/js/debug.js`);
         assert.ok(!debugAsset.headers.get('content-type')?.includes('javascript'));
         assert.ok(!(await debugAsset.text()).includes('export function installDebugConsole'));
-        console.log('Real Pages/D1 integration passed: root Functions route, GET/POST/OPTIONS, duplicate, debug rejection, spam exclusion and production assets.');
+        console.log('Real Pages/D1 integration passed: site-root Functions route, GET/POST/OPTIONS, duplicate, debug rejection, spam exclusion and production assets.');
     } finally {
         if (runtime && !exited) {
             runtime.kill('SIGTERM');

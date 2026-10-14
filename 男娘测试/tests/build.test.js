@@ -4,15 +4,17 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
-const { buildSite } = require('../../scripts/build.cjs');
-const buildPath = path.resolve(__dirname, '../../scripts/build.cjs');
+const { buildSite } = require('../scripts/build.cjs');
+const buildPath = path.resolve(__dirname, '../scripts/build.cjs');
 
 function fixture() {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'quiz-build-test-'));
-    fs.mkdirSync(path.join(root, '男娘测试/js'), { recursive: true });
-    fs.writeFileSync(path.join(root, '男娘测试/index.html'), 'complete site');
-    fs.writeFileSync(path.join(root, '男娘测试/js/debug.js'), 'development only');
-    fs.writeFileSync(path.join(root, '男娘测试/js/main.js'), `async function startApp() {
+    for (const directory of ['css', 'js', 'locales', 'migrations', 'questions', 'vendor']) {
+        fs.mkdirSync(path.join(root, directory), { recursive: true });
+    }
+    fs.writeFileSync(path.join(root, 'index.html'), 'complete site');
+    fs.writeFileSync(path.join(root, 'js/debug.js'), 'development only');
+    fs.writeFileSync(path.join(root, 'js/main.js'), `async function startApp() {
         const local = true;
         if (local) { await import('./debug.js'); }
         return 'ready';
@@ -31,7 +33,7 @@ test('failed build preserves existing output and releases staging directories an
     try {
         buildSite(root);
         verify(root);
-        fs.writeFileSync(path.join(root, '男娘测试/js/main.js'), 'invalid source !!!');
+        fs.writeFileSync(path.join(root, 'js/main.js'), 'invalid source !!!');
         assert.throws(() => buildSite(root));
         verify(root);
     } finally { fs.rmSync(root, { recursive: true, force: true }); }

@@ -2,9 +2,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const acorn = require('acorn');
 
-function buildSite(repositoryRoot = path.resolve(__dirname, '..')) {
-    const root = path.resolve(repositoryRoot);
-    const source = path.join(root, '男娘测试');
+function buildSite(siteRoot = path.resolve(__dirname, '..')) {
+    const root = path.resolve(siteRoot);
+    const source = root;
     const output = path.resolve(root, 'dist');
     const lockPath = path.join(root, '.build.lock');
     if (output !== path.join(root, 'dist') || !output.startsWith(root + path.sep)) {
@@ -20,10 +20,14 @@ function buildSite(repositoryRoot = path.resolve(__dirname, '..')) {
     let staging, previous, published = false;
     try {
         staging = fs.mkdtempSync(path.join(root, '.build-'));
-        fs.cpSync(source, staging, {
-            recursive: true,
-            filter: file => !['tests', 'functions', 'debug.js', 'package.json'].includes(path.basename(file))
-        });
+        for (const entry of ['css', 'js', 'locales', 'migrations', 'questions', 'vendor', 'index.html']) {
+            const from = path.join(source, entry);
+            const to = path.join(staging, entry);
+            fs.cpSync(from, to, {
+                recursive: true,
+                filter: file => path.basename(file) !== 'debug.js'
+            });
+        }
         const entry = path.join(staging, 'js/main.js');
         let code = fs.readFileSync(entry, 'utf8');
         const ast = acorn.parse(code, { ecmaVersion: 'latest', sourceType: 'module' });
@@ -75,6 +79,6 @@ function buildSite(repositoryRoot = path.resolve(__dirname, '..')) {
 
 if (require.main === module) {
     buildSite();
-    console.log('Production site built in dist/; debug module and bootstrap excluded.');
+    console.log('Production site built in this Pages project’s dist/; debug module and bootstrap excluded.');
 }
 module.exports = { buildSite };
