@@ -1,7 +1,7 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
-const root = path.resolve(__dirname, '../男娘测试');
+const root = path.resolve(__dirname, process.env.TEST_SITE_ROOT || '../男娘测试');
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
 const server = http.createServer((req, res) => {
     let pathname;
@@ -19,5 +19,5 @@ const server = http.createServer((req, res) => {
         res.end(data);
     });
 });
-if (require.main === module) server.listen(4173, '127.0.0.1');
+if (require.main === module) server.listen(Number(process.env.PORT || 4173), '127.0.0.1');
 module.exports = server;

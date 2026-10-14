@@ -9,5 +9,9 @@ module.exports = defineConfig({
         { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
         { name: 'mobile', use: { ...devices['Pixel 7'] } }
     ],
-    webServer: { command: 'node scripts/serve.cjs', url: 'http://127.0.0.1:4173', reuseExistingServer: false }
+    webServer: [
+        { command: 'node scripts/serve.cjs', url: 'http://127.0.0.1:4173', reuseExistingServer: false },
+        { command: 'node scripts/serve.cjs', url: 'http://127.0.0.1:4174', reuseExistingServer: false,
+            env: { PORT: '4174', TEST_SITE_ROOT: '../dist' } }
+    ]
 });

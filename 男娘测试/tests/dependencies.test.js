@@ -13,7 +13,7 @@ function loader() {
             head: { appendChild: script => scripts.push(script) }
         }
     });
-    vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/dependencies.js'), 'utf8'), context);
+    vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/dependencies.js'), 'utf8').replace(/^export /gm, ''), context);
     return { context, scripts };
 }
 

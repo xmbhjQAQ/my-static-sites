@@ -1,3 +1,9 @@
 node_modules/
 test-results/
 playwright-report/
+dist/
+.build.lock
+.build-*/
+.previous-build-*/
+.pages-test-*.json
+.wrangler/
