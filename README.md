@@ -48,7 +48,8 @@ root with build command `npm run build` and output directory `dist`. Serving the
 source directory directly also works; production hostnames never load the debug
 console. Debug assets and Functions source are excluded from the static `dist/` directory.
 
-`npm run test:pages` starts the real local Pages runtime from the repository root,
+`npm run test:pages` invokes the pinned Wrangler 4.151.0 CLI with `npm exec`
+(cached after its first download), and starts the real local Pages runtime from the repository root,
 applies migrations to an isolated local D1 database, and tests GET/POST/OPTIONS on
 `/api/score` without mocking the route. It checks valid submissions, duplicates,
 debug rejection and summary statistics, then stops the runtime and removes its

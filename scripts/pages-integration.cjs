@@ -8,7 +8,15 @@ const { spawn, execFileSync } = require('node:child_process');
 const { once } = require('node:events');
 
 const root = path.resolve(__dirname, '..');
-const cli = path.join(root, 'node_modules/wrangler/bin/wrangler.js');
+// npm exec supplies the pinned test CLI on PATH; it is not a project dependency.
+const cli = (process.env.PATH || process.env.Path || '').split(path.delimiter)
+    .map(directory => path.resolve(directory, '../wrangler/bin/wrangler.js'))
+    .find(file => {
+        if (!fs.existsSync(file)) return false;
+        const manifest = JSON.parse(fs.readFileSync(path.resolve(path.dirname(file), '../package.json'), 'utf8'));
+        return manifest.name === 'wrangler' && manifest.version === '4.151.0';
+    });
+if (!cli) throw new Error('Run this integration test with npm run test:pages to supply Wrangler 4.151.0.');
 const databaseId = '00000000-0000-4000-8000-000000000001';
 const environment = { ...process.env, WRANGLER_SEND_METRICS: 'false' };
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
