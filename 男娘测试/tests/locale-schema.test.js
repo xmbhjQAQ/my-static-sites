@@ -50,7 +50,8 @@ test('translator template matches the canonical shape', () => {
 });
 
 test('all literal application translation references exist in the schema', () => {
-    const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+    const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8') + fs.readdirSync(path.join(root, 'js'))
+        .filter(name => name.endsWith('.js')).map(name => fs.readFileSync(path.join(root, 'js', name), 'utf8')).join('\n');
     const references = [
         ...html.matchAll(/(?:\bt|\bgetMessage)\(\s*['"]([^'"]+)['"]/g),
         ...html.matchAll(/data-i18n(?:-html|-title|-aria-label|-alt|-content)?="([^"]+)"/g)
