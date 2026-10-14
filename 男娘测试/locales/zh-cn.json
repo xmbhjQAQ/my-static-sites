@@ -11,12 +11,7 @@
   },
   "language": {
     "selectLabel": "切换语言",
-    "unavailable": "该语言资源还没补全，暂时不可切换。",
-    "options": {
-      "zh-CN": "简体中文",
-      "en-US": "English",
-      "ja": "日本語"
-    }
+    "unavailable": "该语言资源还没补全，暂时不可切换。"
   },
   "home": {
     "title": "男娘潜质综合评估量表",
@@ -53,11 +48,26 @@
   },
   "question": {
     "standardOptions": [
-      { "l": "完全符合", "v": 5 },
-      { "l": "比较符合", "v": 4 },
-      { "l": "中立/不确定", "v": 3 },
-      { "l": "比较不符合", "v": 2 },
-      { "l": "完全不符合", "v": 1 }
+      {
+        "l": "完全符合",
+        "v": 5
+      },
+      {
+        "l": "比较符合",
+        "v": 4
+      },
+      {
+        "l": "中立/不确定",
+        "v": 3
+      },
+      {
+        "l": "比较不符合",
+        "v": 2
+      },
+      {
+        "l": "完全不符合",
+        "v": 1
+      }
     ],
     "reversePrefix": "【反向】"
   },
@@ -65,7 +75,12 @@
     "title": "正在生成深度鉴定报告...",
     "defaultText": "正在交叉比对行为与心理数据...",
     "chartEngine": "加载制图引擎...",
-    "steps": ["校验作答波形", "生成潜质雷达图", "匹配专属鉴定档案", "封装整活报告"],
+    "steps": [
+      "校验作答波形",
+      "生成潜质雷达图",
+      "匹配专属鉴定档案",
+      "封装整活报告"
+    ],
     "normalTexts": [
       "正在构建核心行为树...",
       "深度分析潜意识倾向...",
@@ -151,13 +166,13 @@
       "dockSave": "保存",
       "dockCopy": "复制",
       "dockReset": "重测",
-      "stopGlitch": "✖ 关闭特效",
       "enableGlitch": "⚠ 开启特效",
       "disableGlitch": "✖ 关闭特效",
       "showNormalResult": "查看正常结果",
       "glitchRiskConfirm": "该特效包含快速闪烁、抖动和高对比颜色变化，可能诱发光敏不适或光敏性癫痫。确认开启吗？"
     },
-    "dimensionFallbackHtml": "<div style=\"text-align:center;color:#ff4d4f;margin:30px 0;font-weight:bold;font-size:16px;\">检测到极度异常数据<br>本局各大维度底层面板已自毁 🈲</div>"
+    "dimensionFallbackHtml": "<div style=\"text-align:center;color:#ff4d4f;margin:30px 0;font-weight:bold;font-size:16px;\">检测到极度异常数据<br>本局各大维度底层面板已自毁 🈲</div>",
+    "screenshotWorking": "生成截图中..."
   },
   "footer": {
     "github": "GitHub 仓库",
@@ -176,8 +191,7 @@
     "copyFail": "复制失败，请手动复制",
     "nativeFallback": "浏览器不支持原生分享，已复制文案",
     "imageSuccess": "长图已生成",
-    "imageFail": "截图生成失败，请稍后再试或换个浏览器保存。",
-    "questionLoadFail": "题库加载失败，请刷新后重试"
+    "imageFail": "截图生成失败，请稍后再试或换个浏览器保存。"
   },
   "errors": {
     "questionLoad": "题库加载失败，请刷新后重试。",
@@ -211,17 +225,48 @@
       "D": "社交亚文化"
     },
     "meta": {
-      "A": { "icon": "美", "color": "#ff8fab", "short": "审美雷达" },
-      "B": { "icon": "行", "color": "#a8e6cf", "short": "行为本能" },
-      "C": { "icon": "心", "color": "#d8b4fe", "short": "心理共情" },
-      "D": { "icon": "圈", "color": "#ffd166", "short": "社交同化" }
+      "A": {
+        "icon": "美",
+        "color": "#ff8fab",
+        "short": "审美雷达"
+      },
+      "B": {
+        "icon": "行",
+        "color": "#a8e6cf",
+        "short": "行为本能"
+      },
+      "C": {
+        "icon": "心",
+        "color": "#d8b4fe",
+        "short": "心理共情"
+      },
+      "D": {
+        "icon": "圈",
+        "color": "#ffd166",
+        "short": "社交同化"
+      }
     },
     "levels": {
-      "over": { "tag": "爆表", "text": "特征极度凸显，属于一眼能看出来的主导倾向。" },
-      "high": { "tag": "偏高", "text": "倾向已经比较明显，日常表现里会经常冒头。" },
-      "medium": { "tag": "中等", "text": "存在一定波动，偶尔会被特定场景触发。" },
-      "low": { "tag": "偏低", "text": "相关信号较弱，更多停留在轻微兴趣或偶发表现。" },
-      "none": { "tag": "钢板", "text": "几乎没有有效波形，系统暂时没捕捉到明显迹象。" }
+      "over": {
+        "tag": "爆表",
+        "text": "特征极度凸显，属于一眼能看出来的主导倾向。"
+      },
+      "high": {
+        "tag": "偏高",
+        "text": "倾向已经比较明显，日常表现里会经常冒头。"
+      },
+      "medium": {
+        "tag": "中等",
+        "text": "存在一定波动，偶尔会被特定场景触发。"
+      },
+      "low": {
+        "tag": "偏低",
+        "text": "相关信号较弱，更多停留在轻微兴趣或偶发表现。"
+      },
+      "none": {
+        "tag": "钢板",
+        "text": "几乎没有有效波形，系统暂时没捕捉到明显迹象。"
+      }
     }
   },
   "stability": {
@@ -249,14 +294,54 @@
     "guard": "钢铁防线守门员"
   },
   "tiers": [
-    { "max": 75, "tier": "🛡️ 绝对钢铁壁垒", "desc": "纯直·零波动·防弹级·毫无破绽", "color": "#777777" },
-    { "max": 105, "tier": "🪨 硬核直男本色", "desc": "直得发光·钢铁直男·毫无波澜", "color": "#888888" },
-    { "max": 135, "tier": "📦 薛定谔的萌新", "desc": "偶尔心动·但还藏得住·潜质初现", "color": "#a0a0a0" },
-    { "max": 160, "tier": "🌸 浅度粉红觉醒", "desc": "已经偷偷看可爱东西了·入门级", "color": "#ff8fab" },
-    { "max": 185, "tier": "🎀 深度觉醒预备役", "desc": "潜质已觉醒·只差临门一脚", "color": "#ff5c8a" },
-    { "max": 205, "tier": "🧸 软妹基因初醒", "desc": "行为开始叛变·本能系软妹", "color": "#fa709a" },
-    { "max": 225, "tier": "🌈 纯度极高的男娘", "desc": "天赋拉满·随时可以C位出道", "color": "#a18cd1" },
-    { "max": 250, "tier": "👑 究极天选男娘", "desc": "传说级·纯度99.9%·已无药可救", "color": "#ff1493" }
+    {
+      "max": 75,
+      "tier": "🛡️ 绝对钢铁壁垒",
+      "desc": "纯直·零波动·防弹级·毫无破绽",
+      "color": "#777777"
+    },
+    {
+      "max": 105,
+      "tier": "🪨 硬核直男本色",
+      "desc": "直得发光·钢铁直男·毫无波澜",
+      "color": "#888888"
+    },
+    {
+      "max": 135,
+      "tier": "📦 薛定谔的萌新",
+      "desc": "偶尔心动·但还藏得住·潜质初现",
+      "color": "#a0a0a0"
+    },
+    {
+      "max": 160,
+      "tier": "🌸 浅度粉红觉醒",
+      "desc": "已经偷偷看可爱东西了·入门级",
+      "color": "#ff8fab"
+    },
+    {
+      "max": 185,
+      "tier": "🎀 深度觉醒预备役",
+      "desc": "潜质已觉醒·只差临门一脚",
+      "color": "#ff5c8a"
+    },
+    {
+      "max": 205,
+      "tier": "🧸 软妹基因初醒",
+      "desc": "行为开始叛变·本能系软妹",
+      "color": "#fa709a"
+    },
+    {
+      "max": 225,
+      "tier": "🌈 纯度极高的男娘",
+      "desc": "天赋拉满·随时可以C位出道",
+      "color": "#a18cd1"
+    },
+    {
+      "max": 250,
+      "tier": "👑 究极天选男娘",
+      "desc": "传说级·纯度99.9%·已无药可救",
+      "color": "#ff1493"
+    }
   ],
   "punish": {
     "tier": "🤡 骗骗哥们就行了，别把自己骗了（",

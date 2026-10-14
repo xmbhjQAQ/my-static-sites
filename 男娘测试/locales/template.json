@@ -1,145 +1,229 @@
 {
   "__translatorNotes": {
-    "purpose": "Copy this file when creating a new language pack. Translate all user-facing strings, keep every key name unchanged, and keep placeholders such as {score}, {tier}, {seconds}, {value}, {percent}, {count}, {delta}, {title}, {dominantName}, and {rankText}.",
-    "languageConfig": "After creating a translated dictionary and question bank, add the language entry to FALLBACK_LANGUAGE_CONFIG in index.html. The language selector label is read from that config, not from this dictionary.",
-    "html": "Keys ending in Html may contain simple inline HTML already shown in the value. Keep tags balanced.",
-    "arrays": "question.standardOptions must stay in score order 5 to 1. tiers must stay sorted by max."
+    "purpose": "Copy this file for a new locale. Translate every empty string; preserve keys, array ordering, numbers and placeholders such as {score} and {count}. Validate against locale.schema.json with npm test.",
+    "languageConfig": "Add your dictionary and question bank to FALLBACK_LANGUAGE_CONFIG in the application language configuration. Selector labels come from this configuration.",
+    "html": "Keys ending in Html can contain balanced inline HTML.",
+    "arrays": "question.standardOptions stays in score order 5 to 1. tiers stays sorted by max.",
+    "metadata": "Remove __translatorNotes from the completed locale. All translation keys use nested objects; do not add dotted keys."
   },
-  "meta.title": "",
-  "meta.description": "",
-  "meta.ogTitle": "",
-  "meta.ogDescription": "",
-  "aria.darkMode": "",
-  "aria.darkToLight": "",
-  "aria.darkToDark": "",
-  "language.selectLabel": "",
-  "language.unavailable": "",
-  "home.title": "",
-  "home.introHtml": "",
-  "home.engineHtml": "",
-  "home.likert": "",
-  "home.choice": "",
-  "home.warning": "",
-  "home.disclaimer": "",
-  "home.start": "",
-  "home.continue": "",
-  "home.continueResult": "",
-  "quiz.prev": "",
-  "quiz.exit": "",
-  "quiz.progress": "",
-  "quiz.prompt": "",
-  "quiz.progressPercent": "{percent}",
-  "quiz.progressLeft": "{count}",
-  "quiz.loadingQuestion": "",
-  "quiz.badges.likert": "",
-  "quiz.badges.likertCheck": "",
-  "quiz.badges.choice": "",
-  "quiz.badges.choiceCheck": "",
-  "quiz.helpers.likert": "",
-  "quiz.helpers.likertCheck": "",
-  "quiz.helpers.choice": "",
-  "quiz.helpers.choiceCheck": "",
-  "question.standardOptions": [
-    { "l": "", "v": 5 },
-    { "l": "", "v": 4 },
-    { "l": "", "v": 3 },
-    { "l": "", "v": 2 },
-    { "l": "", "v": 1 }
-  ],
-  "question.reversePrefix": "",
-  "loading.title": "",
-  "loading.defaultText": "",
-  "loading.chartEngine": "",
-  "loading.steps.0": "",
-  "loading.steps.1": "",
-  "loading.steps.2": "",
-  "loading.steps.3": "",
-  "loading.steps": ["", "", "", ""],
-  "loading.normalTexts": ["", "", "", ""],
-  "loading.punishTexts": ["", "", "", ""],
-  "result.scoreKicker": "",
-  "result.tierLoading": "",
-  "result.punishNotice": "",
-  "result.punishNoticeWithEffectWarning": "",
-  "result.summaryKicker": "",
-  "result.summaryTitleLoading": "",
-  "result.summaryLabels.score": "",
-  "result.summaryLabels.tier": "",
-  "result.summaryLabels.dominant": "",
-  "result.summaryLabels.rank": "",
-  "result.summaryValues.score": "",
-  "result.summaryValues.tier": "",
-  "result.summaryValues.dominant": "",
-  "result.summaryValues.rank": "",
-  "result.summaryValues.spam": "",
-  "result.summaryValues.waiting": "",
-  "result.creatorNoteTitle": "",
-  "result.creatorNoteP1": "",
-  "result.creatorNoteP2": "",
-  "result.creatorNoteP3": "",
-  "result.creatorNoteP4": "",
-  "result.creatorNoteP5": "",
-  "result.creatorNoteBilibili": "",
-  "result.creatorNoteGithub": "",
-  "result.creatorNoteHide": "",
-  "result.creatorNoteShow": "",
-  "result.sections.radar": "",
-  "result.sections.stability": "",
-  "result.sections.dimensions": "",
-  "result.sections.report": "",
-  "result.radarDefault": "",
-  "result.radarPunished": "",
-  "result.radarUnavailable": "",
-  "result.radarSummary": "{topName} {topPercent} {lowName} {lowPercent} {shortName}",
-  "result.stabilityTitle": "",
-  "result.traitTitleLoading": "",
-  "result.traitLoading": "",
-  "result.traitTokens.analysis": "",
-  "result.traitTokens.behavior": "",
-  "result.traitTokens.advice": "",
-  "result.qrAlt": "",
-  "result.qrHelp": "",
-  "result.actions.share": "",
-  "result.actions.copy": "",
-  "result.actions.download": "",
-  "result.actions.reset": "",
-  "result.actions.dockShare": "",
-  "result.actions.dockSave": "",
-  "result.actions.dockCopy": "",
-  "result.actions.dockReset": "",
-  "result.actions.stopGlitch": "",
-  "result.actions.enableGlitch": "",
-  "result.actions.disableGlitch": "",
-  "result.actions.showNormalResult": "",
-  "result.actions.glitchRiskConfirm": "",
-  "result.dimensionFallbackHtml": "",
-  "confirm.exit": "",
-  "confirm.reset": "",
-  "confirm.languageChange": "",
-  "toast.copySuccess": "",
-  "toast.copyFail": "",
-  "toast.nativeFallback": "",
-  "toast.imageSuccess": "",
-  "toast.imageFail": "",
-  "toast.questionLoadFail": "",
-  "errors.questionLoad": "",
-  "errors.questionEmpty": "",
-  "errors.questionInvalid": "",
-  "errors.stateInvalid": "",
-  "share.title": "",
-  "share.defaultText": "",
-  "share.nativeDefault": "",
-  "share.resultText": "{title} {score} {tier} {dominantName} {rankText}",
-  "share.rankFallback": "",
-  "share.punishedText": "",
-  "scoreStats.spamRank": "",
-  "scoreStats.unavailable": "",
-  "scoreStats.syncing": "",
-  "scoreStats.average": "{average} {count} {compareText}",
-  "scoreStats.compareEqual": "",
-  "scoreStats.compareHigh": "{delta}",
-  "scoreStats.compareLow": "{delta}",
-  "scoreStats.summaryCompare": "{compareText}",
+  "meta": {
+    "title": "",
+    "ogTitle": "",
+    "ogDescription": ""
+  },
+  "aria": {
+    "darkMode": "",
+    "darkToLight": "",
+    "darkToDark": ""
+  },
+  "language": {
+    "selectLabel": "",
+    "unavailable": ""
+  },
+  "home": {
+    "title": "",
+    "introHtml": "",
+    "engineHtml": "",
+    "likert": "",
+    "choice": "",
+    "warning": "",
+    "disclaimer": "",
+    "start": "",
+    "continue": "",
+    "continueResult": ""
+  },
+  "quiz": {
+    "prev": "",
+    "exit": "",
+    "progress": "",
+    "prompt": "",
+    "progressPercent": "",
+    "progressLeft": "",
+    "loadingQuestion": "",
+    "badges": {
+      "likert": "",
+      "likertCheck": "",
+      "choice": "",
+      "choiceCheck": ""
+    },
+    "helpers": {
+      "likert": "",
+      "likertCheck": "",
+      "choice": "",
+      "choiceCheck": ""
+    }
+  },
+  "question": {
+    "standardOptions": [
+      {
+        "l": "",
+        "v": 5
+      },
+      {
+        "l": "",
+        "v": 4
+      },
+      {
+        "l": "",
+        "v": 3
+      },
+      {
+        "l": "",
+        "v": 2
+      },
+      {
+        "l": "",
+        "v": 1
+      }
+    ],
+    "reversePrefix": ""
+  },
+  "loading": {
+    "title": "",
+    "defaultText": "",
+    "chartEngine": "",
+    "steps": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "normalTexts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "punishTexts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "result": {
+    "scoreKicker": "",
+    "tierLoading": "",
+    "punishNotice": "",
+    "punishNoticeWithEffectWarning": "",
+    "summaryKicker": "",
+    "summaryTitleLoading": "",
+    "summaryLabels": {
+      "score": "",
+      "tier": "",
+      "dominant": "",
+      "rank": ""
+    },
+    "summaryValues": {
+      "score": "",
+      "tier": "",
+      "dominant": "",
+      "rank": "",
+      "spam": "",
+      "waiting": ""
+    },
+    "creatorNoteTitle": "",
+    "creatorNoteP1": "",
+    "creatorNoteP2": "",
+    "creatorNoteP3": "",
+    "creatorNoteP4": "",
+    "creatorNoteP5": "",
+    "creatorNoteBilibili": "",
+    "creatorNoteGithub": "",
+    "creatorNoteHide": "",
+    "creatorNoteShow": "",
+    "sections": {
+      "radar": "",
+      "stability": "",
+      "dimensions": "",
+      "report": ""
+    },
+    "radarDefault": "",
+    "radarPunished": "",
+    "radarUnavailable": "",
+    "radarSummary": "",
+    "stabilityTitle": "",
+    "traitTitleLoading": "",
+    "traitLoading": "",
+    "traitTokens": {
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "qrAlt": "",
+    "qrHelp": "",
+    "actions": {
+      "share": "",
+      "copy": "",
+      "download": "",
+      "reset": "",
+      "dockShare": "",
+      "dockSave": "",
+      "dockCopy": "",
+      "dockReset": "",
+      "enableGlitch": "",
+      "disableGlitch": "",
+      "showNormalResult": "",
+      "glitchRiskConfirm": ""
+    },
+    "dimensionFallbackHtml": "",
+    "screenshotWorking": ""
+  },
+  "footer": {
+    "github": "",
+    "bilibili": "",
+    "licensePrefix": "",
+    "licenseName": "",
+    "analytics": ""
+  },
+  "confirm": {
+    "exit": "",
+    "reset": "",
+    "languageChange": ""
+  },
+  "toast": {
+    "copySuccess": "",
+    "copyFail": "",
+    "nativeFallback": "",
+    "imageSuccess": "",
+    "imageFail": ""
+  },
+  "errors": {
+    "questionLoad": "",
+    "questionEmpty": "",
+    "questionInvalid": "",
+    "stateInvalid": ""
+  },
+  "share": {
+    "title": "",
+    "defaultText": "",
+    "nativeDefault": "",
+    "resultText": "",
+    "rankFallback": "",
+    "punishedText": ""
+  },
+  "scoreStats": {
+    "spamRank": "",
+    "unavailable": "",
+    "syncing": "",
+    "average": "",
+    "compareEqual": "",
+    "compareHigh": "",
+    "compareLow": "",
+    "summaryCompare": ""
+  },
   "dimensions": {
     "names": {
       "A": "",
@@ -148,87 +232,207 @@
       "D": ""
     },
     "meta": {
-      "A": { "icon": "", "color": "#ff8fab", "short": "" },
-      "B": { "icon": "", "color": "#a8e6cf", "short": "" },
-      "C": { "icon": "", "color": "#d8b4fe", "short": "" },
-      "D": { "icon": "", "color": "#ffd166", "short": "" }
+      "A": {
+        "icon": "",
+        "color": "",
+        "short": ""
+      },
+      "B": {
+        "icon": "",
+        "color": "",
+        "short": ""
+      },
+      "C": {
+        "icon": "",
+        "color": "",
+        "short": ""
+      },
+      "D": {
+        "icon": "",
+        "color": "",
+        "short": ""
+      }
     },
     "levels": {
-      "over": { "tag": "", "text": "" },
-      "high": { "tag": "", "text": "" },
-      "medium": { "tag": "", "text": "" },
-      "low": { "tag": "", "text": "" },
-      "none": { "tag": "", "text": "" }
+      "over": {
+        "tag": "",
+        "text": ""
+      },
+      "high": {
+        "tag": "",
+        "text": ""
+      },
+      "medium": {
+        "tag": "",
+        "text": ""
+      },
+      "low": {
+        "tag": "",
+        "text": ""
+      },
+      "none": {
+        "tag": "",
+        "text": ""
+      }
     }
   },
-  "chart.A": "",
-  "chart.B": "",
-  "chart.C": "",
-  "chart.D": "",
-  "chart.dataset": "",
-  "stability.defaultLevel": "",
-  "stability.defaultDesc": "",
-  "stability.veryLowLevel": "",
-  "stability.veryLowDesc": "",
-  "stability.lowLevel": "",
-  "stability.lowDesc": "",
-  "stability.mediumLevel": "",
-  "stability.mediumDesc": "",
-  "stability.debugDesc": "",
-  "stability.punishedPrefix": "{level}",
-  "stability.levelWithScore": "{level} {score}",
-  "stability.punishedFallback": "",
-  "stability.abnormal": "",
-  "titles.spam": "",
-  "titles.legend": "",
-  "titles.dominant": "{dominantName}",
-  "titles.deep": "",
-  "titles.pink": "",
-  "titles.rookie": "",
-  "titles.guard": "",
-  "tiers": [
-    { "max": 75, "tier": "", "desc": "", "color": "#6c757d" },
-    { "max": 105, "tier": "", "desc": "", "color": "#8e9aaf" },
-    { "max": 135, "tier": "", "desc": "", "color": "#8eecf5" },
-    { "max": 160, "tier": "", "desc": "", "color": "#ffb3c6" },
-    { "max": 185, "tier": "", "desc": "", "color": "#ff8fab" },
-    { "max": 205, "tier": "", "desc": "", "color": "#ff5c8a" },
-    { "max": 225, "tier": "", "desc": "", "color": "#ff1493" },
-    { "max": 250, "tier": "", "desc": "", "color": "#d63384" }
-  ],
-  "punish.tier": "",
-  "punish.stampText": "",
-  "punish.tierName": "",
-  "punish.invalidSample": "",
-  "punish.traitTitle": "",
-  "punish.descs.1": "{seconds}",
-  "punish.descs.2": "{value}",
-  "punish.descs.3": "{value}",
-  "punish.descs.4": "{value}",
-  "punish.descs.5": "{value}",
-  "punish.descs.fallback": "",
-  "punish.analysis.1": "{seconds}",
-  "punish.analysis.2": "",
-  "punish.analysis.3": "",
-  "punish.analysis.4": "",
-  "punish.analysis.5": "",
-  "punish.analysis.fallback": "",
-  "punish.behavior": "",
-  "punish.advice": "",
-  "traits": {
-    "A": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "B": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "C": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "D": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "straight": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "legend": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "AB": { "title": "", "analysis": "", "behavior": "", "advice": "" },
-    "CD": { "title": "", "analysis": "", "behavior": "", "advice": "" }
+  "stability": {
+    "defaultLevel": "",
+    "defaultDesc": "",
+    "veryLowLevel": "",
+    "veryLowDesc": "",
+    "lowLevel": "",
+    "lowDesc": "",
+    "mediumLevel": "",
+    "mediumDesc": "",
+    "debugDesc": "",
+    "punishedPrefix": "",
+    "levelWithScore": "",
+    "punishedFallback": "",
+    "abnormal": ""
   },
-  "files.downloadName": "",
-  "footer.github": "",
-  "footer.bilibili": "",
-  "footer.licensePrefix": "",
-  "footer.licenseName": "",
-  "footer.analytics": ""
+  "titles": {
+    "spam": "",
+    "legend": "",
+    "dominant": "",
+    "deep": "",
+    "pink": "",
+    "rookie": "",
+    "guard": ""
+  },
+  "tiers": [
+    {
+      "max": 75,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 105,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 135,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 160,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 185,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 205,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 225,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    },
+    {
+      "max": 250,
+      "tier": "",
+      "desc": "",
+      "color": ""
+    }
+  ],
+  "punish": {
+    "tier": "",
+    "stampText": "",
+    "tierName": "",
+    "invalidSample": "",
+    "traitTitle": "",
+    "descs": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "fallback": ""
+    },
+    "analysis": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "fallback": ""
+    },
+    "behavior": "",
+    "advice": ""
+  },
+  "traits": {
+    "A": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "B": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "C": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "D": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "straight": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "legend": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "AB": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    },
+    "CD": {
+      "title": "",
+      "analysis": "",
+      "behavior": "",
+      "advice": ""
+    }
+  },
+  "chart": {
+    "A": "",
+    "B": "",
+    "C": "",
+    "D": "",
+    "dataset": ""
+  },
+  "files": {
+    "downloadName": ""
+  }
 }

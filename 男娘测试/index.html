@@ -1499,7 +1499,6 @@
         function getMessage(key, fallback) {
             const parts = String(key || '').split('.');
             const readFrom = source => {
-                if (source && Object.prototype.hasOwnProperty.call(source, key) && source[key] !== '') return source[key];
                 let cursor = source;
                 for (const part of parts) {
                     if (cursor == null || cursor[part] == null || cursor[part] === '') return undefined;

@@ -23,10 +23,10 @@ for (const key of [
   'traits',
   'files.downloadName'
 ]) {
-  assert.ok(Object.prototype.hasOwnProperty.call(template, key), `template should document ${key}`);
+  assert.ok(key.split('.').reduce((o, k) => o && o[k], template) !== undefined, `template should document ${key}`);
 }
 
-assert.ok(Array.isArray(template['question.standardOptions']), 'template should show the quiz option array shape');
+assert.ok(Array.isArray(template.question.standardOptions), 'template should show the quiz option array shape');
 assert.ok(Array.isArray(template.tiers), 'template should show the result tier array shape');
 assert.ok(template.dimensions && typeof template.dimensions === 'object', 'template should show the dimensions object shape');
 assert.ok(template.dimensions.names && typeof template.dimensions.names === 'object', 'template should show dimension names');
