@@ -120,6 +120,15 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: 'Invalid JSON body.' }, 400);
   }
 
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
+    return json({ ok: false, error: 'Invalid score payload.' }, 400);
+  }
+
+  // Debug renderings must never enter the public statistics, including spam totals.
+  if (body.isDebug) {
+    return json({ ok: false, error: 'Debug submissions are not accepted.' }, 400);
+  }
+
   const score = Number(body.score);
   const scoreMax = Number(body.scoreMax ?? 250);
 

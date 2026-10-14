@@ -1716,6 +1716,7 @@
         let dockTicking = false;
         let debugBypassSpam = false;
         let debugScoreOverride = null;
+        let debugSession = false;
         let suppressScoreUploadForCurrentResult = false;
         let pendingScoreStatsRequest = null;
         const SCORE_COLLECTION_ENDPOINT = '/api/score';
@@ -1939,6 +1940,7 @@
         }
 
         function saveState() {
+            if (debugSession) return;
             try {
                 localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify({
                     shuffledQuestions, userAnswers, currentQIdx, dimMaxScores, totalAnsweringTimeMs, consistencyInfo
@@ -1949,6 +1951,7 @@
         }
 
         function saveCompletedResult({ mode = 'normal' } = {}) {
+            if (debugSession) return;
             try {
                 localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify({
                     version: 1,
@@ -2050,6 +2053,7 @@
         }
 
         async function submitScoreSummary(data) {
+            if (isDebugResult() || suppressScoreUploadForCurrentResult) return fetchScoreStatsOnly();
             if (!window.fetch) return null;
 
             const payload = {
@@ -2062,6 +2066,7 @@
                 stabilityScore: data.stabilityScore ?? null,
                 consistencyDiscount: data.consistencyDiscount ?? null,
                 isSpam: Boolean(data.isSpam),
+                isDebug: false,
                 spamStatus: data.spamStatus ?? 0,
                 durationSeconds: Number((totalAnsweringTimeMs / 1000).toFixed(2)),
                 questionCount: shuffledQuestions.length,
@@ -2155,9 +2160,13 @@
             };
         }
 
+        function isDebugResult() {
+            return debugSession || Number.isFinite(debugScoreOverride) || debugBypassSpam;
+        }
+
         function requestScoreStatsForCurrentResult(context = buildResultScoreContext()) {
             if (!pendingScoreStatsRequest) {
-                pendingScoreStatsRequest = suppressScoreUploadForCurrentResult
+                pendingScoreStatsRequest = (suppressScoreUploadForCurrentResult || isDebugResult())
                     ? fetchScoreStatsOnly()
                     : submitScoreSummary(context.submission);
             }
@@ -2329,6 +2338,7 @@
             debugBypassSpam = false;
             debugScoreOverride = null;
             suppressScoreUploadForCurrentResult = false;
+            debugSession = false;
             resetPendingScoreStatsRequest();
             userAnswers = new Array(shuffledQuestions.length).fill(null);
             showPage('quiz');
@@ -2398,6 +2408,7 @@
         }
 
         function prepareDebugResult(profile = 'high') {
+            debugSession = true;
             initGame();
             resetPendingScoreStatsRequest();
             fillSyntheticAnswers(profile);
@@ -2496,6 +2507,7 @@
                 },
                 punish: runDebugPunish,
                 reset() {
+                    debugSession = false;
                     debugScoreOverride = null;
                     debugBypassSpam = false;
                     suppressScoreUploadForCurrentResult = false;
