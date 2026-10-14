@@ -1,0 +1,13 @@
+{
+  "name": "my-static-sites",
+  "private": true,
+  "scripts": {
+    "test": "node --test 男娘测试/tests/*.test.js",
+    "test:e2e": "playwright test",
+    "check": "npm test && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "acorn": "8.15.0"
+  }
+}
