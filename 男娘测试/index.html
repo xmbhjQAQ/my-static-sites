@@ -3058,49 +3058,48 @@
         }
 
         // --- 下载分享长图逻辑 ---
+        let isCapturingResult = false;
+
         async function downloadResult() {
+            if (isCapturingResult) return;
+            isCapturingResult = true;
             const btn = document.getElementById('btn-download');
             const oldText = btn.innerText;
-            btn.innerText = t('result.screenshotWorking', {}, '生成截图中...');
-            btn.style.pointerEvents = 'none';
+            const exportButtons = Array.from(document.querySelectorAll('[onclick="downloadResult()"], [data-action="downloadResult"]'));
+            const originalExportStates = exportButtons.map(button => ({ disabled: button.disabled, pointerEvents: button.style.pointerEvents }));
+            let restoreCaptureState = () => {};
+            let captureStarted = false;
+
             try {
+                exportButtons.forEach(button => {
+                    button.disabled = true;
+                    button.style.pointerEvents = 'none';
+                });
+                btn.innerText = t('result.screenshotWorking', {}, '生成截图中...');
                 await loadCaptureEngine();
-            } catch (error) {
-                showToast(t('toast.imageFail', {}, '截图生成失败，请稍后再试或换个浏览器保存。'));
-                btn.innerText = oldText;
-                btn.style.pointerEvents = 'auto';
-                return;
-            }
 
-            const originalButtons = document.querySelectorAll('#page-result .btn-main');
-            const originalButtonDisplays = Array.from(originalButtons, b => b.style.display);
-            const activePage = document.querySelector('.page.active');
-            const oldAnimation = activePage.style.animation;
-            const oldOpacity = activePage.style.opacity;
-            const restoreCreatorNote = hideCreatorNoteForShare();
+                const originalButtons = document.querySelectorAll('#page-result .btn-main');
+                const originalButtonDisplays = Array.from(originalButtons, button => button.style.display);
+                const activePage = document.querySelector('.page.active');
+                const oldAnimation = activePage.style.animation;
+                const oldOpacity = activePage.style.opacity;
+                const restoreCreatorNote = hideCreatorNoteForShare();
+                restoreCaptureState = () => {
+                    originalButtons.forEach((button, index) => button.style.display = originalButtonDisplays[index]);
+                    restoreCreatorNote();
+                    activePage.style.animation = oldAnimation;
+                    activePage.style.opacity = oldOpacity;
+                    document.body.classList.remove('capture-mode');
+                    updateResultDockVisibility();
+                };
 
-            const restoreCaptureState = () => {
-                originalButtons.forEach((b, index) => b.style.display = originalButtonDisplays[index]);
-                restoreCreatorNote();
-                btn.innerText = oldText;
-                btn.style.pointerEvents = 'auto';
-                activePage.style.animation = oldAnimation;
-                activePage.style.opacity = oldOpacity;
-                document.body.classList.remove('capture-mode');
-                updateResultDockVisibility();
-            };
-
-            try {
-                originalButtons.forEach(b => b.style.display = 'none');
+                captureStarted = true;
+                originalButtons.forEach(button => button.style.display = 'none');
                 activePage.style.animation = 'none';
                 activePage.style.opacity = '1';
                 document.body.classList.add('capture-mode');
-
-                if (document.fonts && document.fonts.ready) {
-                    await document.fonts.ready;
-                }
+                if (document.fonts && document.fonts.ready) await document.fonts.ready;
                 await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-
                 const isDarkMode = document.body.classList.contains('dark-mode');
                 const canvas = await html2canvas(document.querySelector('.container'), {
                     scale: 2,
@@ -3108,19 +3107,33 @@
                     backgroundColor: isDarkMode ? '#1a1a2e' : '#ffc2d1',
                     logging: false
                 });
-
-                let link = document.createElement('a');
+                const link = document.createElement('a');
                 link.download = t('files.downloadName', {}, '男娘潜质鉴定报告.png');
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 showToast(t('toast.imageSuccess', {}, '长图已生成'));
             } catch (error) {
-                console.error('生成截图失败', error);
-                alert(t('toast.imageFail', {}, '截图生成失败，请稍后再试或换个浏览器保存。'));
+                const message = t('toast.imageFail', {}, '截图生成失败，请稍后再试或换个浏览器保存。');
+                if (captureStarted) {
+                    console.error('生成截图失败', error);
+                    alert(message);
+                } else {
+                    showToast(message);
+                }
             } finally {
-                restoreCaptureState();
+                try {
+                    restoreCaptureState();
+                } finally {
+                    exportButtons.forEach((button, index) => {
+                        button.disabled = originalExportStates[index].disabled;
+                        button.style.pointerEvents = originalExportStates[index].pointerEvents;
+                    });
+                    btn.innerText = oldText;
+                    isCapturingResult = false;
+                }
             }
         }
+
 
         // --- 扩展功能：黑暗模式与原生分享 ---
         function toggleDarkMode() {
