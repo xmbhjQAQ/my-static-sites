@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.cjs",
-    "test": "node --test 男娘测试/tests/*.test.js",
+    "test": "node --test tests/*.test.js",
     "test:e2e": "playwright test",
     "test:pages": "npm exec --yes --package=wrangler@4.151.0 -- node scripts/pages-integration.cjs",
     "check": "npm run build && npm test && npm run test:pages && npm run test:e2e"

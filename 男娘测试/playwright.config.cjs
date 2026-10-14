@@ -1,6 +1,6 @@
 const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
-    testDir: './男娘测试/tests/e2e',
+    testDir: './tests/e2e',
     timeout: 45000,
     workers: 2,
     use: { baseURL: 'http://127.0.0.1:4173', trace: 'retain-on-failure' },

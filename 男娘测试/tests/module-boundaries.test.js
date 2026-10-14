@@ -4,7 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const acorn = require('acorn');
 const eslintScope = require('eslint-scope');
-const root = path.join(__dirname, '../js');
+const siteRoot = path.resolve(__dirname, '..');
+const root = path.join(siteRoot, 'js');
 const globals = new Set('window document navigator location localStorage confirm alert console URL URLSearchParams FileReader setTimeout clearTimeout setInterval clearInterval requestAnimationFrame Chart html2canvas rawQuestionBank globalThis fetch encodeURIComponent Math Number Object Array JSON String Boolean Map Set Date Error Promise Uint32Array undefined'.split(' '));
 
 test('modules have valid exports/imports and no implicit application globals', () => {
@@ -34,12 +35,12 @@ test('HTML uses a module entry and stylesheet with delegated actions', () => {
 });
 
 test('production build removes both debug module and development loader', () => {
-    const dist = path.resolve(root, '../../dist');
+    const dist = path.join(siteRoot, 'dist');
     assert.equal(fs.existsSync(path.join(dist, 'js/debug.js')), false);
     assert.ok(!fs.readFileSync(path.join(dist, 'js/main.js'), 'utf8').includes('debug.js'));
     assert.equal(fs.existsSync(path.join(dist, 'functions')), false);
-    const entry = path.resolve(root, '../../functions/api/score.js');
+    const entry = path.join(siteRoot, 'functions/api/score.js');
     assert.ok(fs.existsSync(entry), 'Pages must discover the score API from the project root');
     const handler = fs.readFileSync(entry, 'utf8');
-    assert.ok(handler.includes("../../男娘测试/functions/api/score.js"));
+    assert.ok(handler.includes('export async function onRequestGet'));
 });

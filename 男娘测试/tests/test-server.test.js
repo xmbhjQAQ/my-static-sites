@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const http = require('node:http');
 const { once } = require('node:events');
-const server = require('../../scripts/serve.cjs');
+const server = require('../scripts/serve.cjs');
 
 test('test server rejects malformed URLs and traversal without stopping subsequent requests', async () => {
     server.listen(0, '127.0.0.1');
