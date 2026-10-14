@@ -5,12 +5,14 @@
     "build": "node scripts/build.cjs",
     "test": "node --test 男娘测试/tests/*.test.js",
     "test:e2e": "playwright test",
-    "check": "npm run build && npm test && npm run test:e2e"
+    "test:pages": "node scripts/pages-integration.cjs",
+    "check": "npm run build && npm test && npm run test:pages && npm run test:e2e"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
     "acorn": "8.15.0",
     "ajv": "8.20.0",
-    "eslint-scope": "8.4.0"
+    "eslint-scope": "8.4.0",
+    "wrangler": "4.151.0"
   }
 }

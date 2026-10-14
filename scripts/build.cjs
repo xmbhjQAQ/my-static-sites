@@ -22,7 +22,7 @@ function buildSite(repositoryRoot = path.resolve(__dirname, '..')) {
         staging = fs.mkdtempSync(path.join(root, '.build-'));
         fs.cpSync(source, staging, {
             recursive: true,
-            filter: file => !['tests', 'debug.js', 'package.json'].includes(path.basename(file))
+            filter: file => !['tests', 'functions', 'debug.js', 'package.json'].includes(path.basename(file))
         });
         const entry = path.join(staging, 'js/main.js');
         let code = fs.readFileSync(entry, 'utf8');

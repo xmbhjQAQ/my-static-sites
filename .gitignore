@@ -5,3 +5,5 @@ dist/
 .build.lock
 .build-*/
 .previous-build-*/
+.pages-test-*.json
+.wrangler/

@@ -37,4 +37,9 @@ test('production build removes both debug module and development loader', () => 
     const dist = path.resolve(root, '../../dist');
     assert.equal(fs.existsSync(path.join(dist, 'js/debug.js')), false);
     assert.ok(!fs.readFileSync(path.join(dist, 'js/main.js'), 'utf8').includes('debug.js'));
+    assert.equal(fs.existsSync(path.join(dist, 'functions')), false);
+    const entry = path.resolve(root, '../../functions/api/score.js');
+    assert.ok(fs.existsSync(entry), 'Pages must discover the score API from the project root');
+    const handler = fs.readFileSync(entry, 'utf8');
+    assert.ok(handler.includes("../../男娘测试/functions/api/score.js"));
 });

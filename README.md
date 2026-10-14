@@ -40,11 +40,19 @@ the debug module and its bootstrap.
 
 ## Deploy
 
-`npm run build` produces `dist/`, including Pages Functions, migrations, locales,
-question banks and vendor assets. Configure Cloudflare Pages from the repository
+`npm run build` produces `dist/` with static assets, migrations, locales,
+question banks and vendor assets. The repository-root `functions/api/score.js`
+forwards to the shared score handler in the source directory; Pages discovers
+this root Functions entry separately from the static output. Configure Cloudflare Pages from the repository
 root with build command `npm run build` and output directory `dist`. Serving the
 source directory directly also works; production hostnames never load the debug
-console. Debug assets are physically excluded when deploying `dist/`.
+console. Debug assets and Functions source are excluded from the static `dist/` directory.
+
+`npm run test:pages` starts the real local Pages runtime from the repository root,
+applies migrations to an isolated local D1 database, and tests GET/POST/OPTIONS on
+`/api/score` without mocking the route. It checks valid submissions, duplicates,
+debug rejection and summary statistics, then stops the runtime and removes its
+temporary test configuration/database. No production credentials are required.
 
 Bind the existing D1 database as `DB`. Apply database migrations through your
 deployment workflow, in order. `0003_remove_reported_debug_submission.sql` removes
